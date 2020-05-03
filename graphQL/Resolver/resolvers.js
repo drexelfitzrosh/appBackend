@@ -1,6 +1,6 @@
 const posts = require('./post/query')
 const users = require('./user/query')
-const createPost = require('./post/mutation')
+const {createPost, likePost} = require('./post/mutation')
 const createUser = require('./user/mutation')
 
 const resolvers = {
@@ -10,7 +10,8 @@ const resolvers = {
   },
   Mutation:{
     createPost: createPost,
-    createUser: createUser
+    createUser: createUser,
+    likePost: likePost,
   }
 }
 

@@ -7,16 +7,17 @@ const userData = async (userId) => {
 }
 
 const postsData = async (postId) => {
-  const post = await Post.find({_id: {$in: postId}})
+  const post = await Post.find({_id: {$in: postId}}).populate('like')
   console.log(post)
   const posts = await post.map(async (data)=>{
-    return {...data._doc, user: await userData.bind(this, data.user)}
+    return {...data._doc, user: await userData.bind(this, data.user), like: await postLike.bind(this, data.like)}
   })
-  console.log('==>', posts)
   return posts
 }
 
+
+
 module.exports = {
   userData: userData,
-  postsData: postsData
-}
+  postsData: postsData,
+  }

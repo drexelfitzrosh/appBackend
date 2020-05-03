@@ -7,6 +7,7 @@ type Post {
   discription: String!
   dateCreated: String!
   user: User!
+  likes:[User!]
 }
 
 type User {
@@ -35,8 +36,9 @@ type Query {
 }
 
 type Mutation {
-  createPost(input: PostInput): Post!
+  createPost(input: PostInput): Post
   createUser(input: UserInput): User
+  likePost(postId: ID!): Post
 }
 `;
 
